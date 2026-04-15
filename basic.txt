@@ -1,0 +1,37 @@
+What is Counter?
+
+Counter is a specialized map from:
+
+from collections import Counter
+
+👉 It automatically counts frequency.
+
+🔹 Example
+from collections import Counter
+
+arr = [1,1,2,3,3,3]
+
+count = Counter(arr)
+print(count)
+
+Output:
+
+{1: 2, 2: 1, 3: 3}
+⚡ Difference: Map vs Counter
+Feature	Map (dict)	Counter
+Manual counting	Yes	No
+Auto frequency	No	Yes
+Flexibility	High	Medium
+Use case	General	Counting
+🔥 Same Problem (Both Ways)
+Using Map
+mp = {}
+
+for num in arr:
+    mp[num] = mp.get(num, 0) + 1
+Using Counter
+from collections import Counter
+
+mp = Counter(arr)
+
+👉 Counter = shortcut
