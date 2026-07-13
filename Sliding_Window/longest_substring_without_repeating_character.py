@@ -11,8 +11,8 @@ class Solution:
 
                 current = num
                 length = 1
-
-                while current + 1 in nums_set:
+            for i in range:
+               # while current + 1 in nums_set:
                     current += 1
                     length += 1
 
