@@ -1,0 +1,197 @@
+Stack Operations
+
+There are only four basic operations.
+
+1. Push
+
+Add element to the top.
+
+stack.append(10)
+
+Stack:
+
+10
+stack.append(20)
+
+Stack:
+
+20
+10
+2. Pop
+
+Remove top element.
+
+stack.pop()
+
+Removes:
+
+20
+
+Stack becomes:
+
+10
+3. Peek / Top
+
+See top element without removing it.
+
+stack[-1]
+
+Output:
+
+10
+4. Empty Check
+if not stack:
+
+or
+
+len(stack) == 0
+Python Implementation
+
+Python list is commonly used as a stack.
+
+stack = []
+
+stack.append(5)
+stack.append(10)
+stack.append(15)
+
+print(stack)
+
+Output:
+
+[5, 10, 15]
+
+Remove:
+
+stack.pop()
+
+Output:
+
+[5, 10]
+
+Top element:
+
+print(stack[-1])
+
+Output:
+
+10
+Dry Run
+stack = []
+
+stack.append(1)
+stack.append(2)
+stack.append(3)
+
+stack.pop()
+
+stack.append(4)
+
+stack.pop()
+
+Let's see.
+
+Initially
+
+[]
+
+Push 1
+
+[1]
+
+Push 2
+
+[1,2]
+
+Push 3
+
+[1,2,3]
+
+Pop
+
+[1,2]
+
+Push 4
+
+[1,2,4]
+
+Pop
+
+[1,2]
+
+Final stack:
+
+[1,2]
+Time Complexity
+Operation	Complexity
+Push	O(1)
+Pop	O(1)
+Peek	O(1)
+Empty	O(1)
+
+This efficiency is why stacks are used so often.
+
+🧠 How to Recognize a Stack Problem
+
+When you see words like:
+
+matching
+balanced
+nested
+undo
+reverse processing
+nearest previous/next
+expression evaluation
+
+Think:
+
+Can a stack help me remember previous elements?
+
+Types of Stack Problems
+1. Matching
+
+Example:
+
+()[]{}  ✅
+([)]    ❌
+
+Use stack to remember opening brackets.
+
+2. Monotonic Stack
+
+Maintain stack in increasing or decreasing order.
+
+Examples:
+
+Next Greater Element I
+Daily Temperatures
+3. Expression Evaluation
+
+Examples:
+
+2 3 +
+
+Uses a stack to evaluate operators and operands.
+
+4. Min/Max Stack
+
+Store additional information while pushing.
+
+Example:
+
+Min Stack
+Stack vs Queue
+Stack	Queue
+LIFO	FIFO
+Push at top	Insert at rear
+Pop from top	Remove from front
+Python list	collections.deque
+Mental Model
+
+Imagine every append() places a box on top of a pile.
+
+Every pop() removes only the top box.
+
+You cannot remove the middle box first.
+
+That restriction is exactly what makes stacks useful for problems involving nested structures, history, and matching.
