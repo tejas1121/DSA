@@ -302,3 +302,30 @@ Uses:
 3
 2
 1
+
+
+Pattern 1: Frequency Counting
+When should this pattern come to your mind?
+
+Whenever the question contains words like:
+
+Count
+Frequency
+Most frequent
+Duplicate count
+Majority
+Anagram
+Occurrences
+
+The Template
+
+This is the template you'll use over and over.
+
+freq = {}
+
+for x in nums:
+    freq[x] = freq.get(x, 0) + 1
+
+That's it.
+
+You should be able to write these 4 lines without thinking.
