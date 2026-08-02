@@ -329,3 +329,6 @@ for x in nums:
 That's it.
 
 You should be able to write these 4 lines without thinking.
+problem solved:
+anagram
+majority_element
