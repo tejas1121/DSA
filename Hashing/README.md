@@ -332,3 +332,4 @@ You should be able to write these 4 lines without thinking.
 problem solved:
 anagram
 majority_element
+first unique element in string
