@@ -336,3 +336,260 @@ first unique element in string
 ransome note
 k_most_frequent.py
 group anagram
+
+
+
+
+Pattern 2: Lookup / Complement Pattern (Hashing)
+Core Idea
+
+In Pattern 1, we asked:
+
+"How many times has this element appeared?"
+
+In Pattern 2, we ask:
+
+"Have I seen this element before?"
+
+or
+
+"Have I already seen the value I need?"
+
+Instead of counting, we're performing fast lookups.
+
+When do we use this pattern?
+
+Whenever the problem contains phrases like:
+
+Does this element exist?
+Have we seen this before?
+Find a pair.
+Find a duplicate.
+Check if present.
+Return the first repeated element.
+Find complement.
+
+Think:
+
+HashSet or HashMap
+
+HashSet vs HashMap
+HashSet
+
+Stores only values.
+
+Example:
+
+seen = {2, 5, 8}
+
+Questions it answers quickly:
+
+Is 5 present?
+Have I already seen 10?
+
+Operations
+
+5 in seen
+
+Average Time:
+
+O(1)
+HashMap (Dictionary)
+
+Stores
+
+Key → Value
+
+Example
+
+student = {
+    "Alice": 90,
+    "Bob": 85
+}
+
+Questions:
+
+Is Alice present?
+What is Alice's mark?
+Mental Model
+
+Imagine you're checking attendance.
+
+Without hashing
+
+Rahul?
+Search all students...
+
+Time
+
+O(n)
+
+With HashSet
+
+Rahul?
+
+Yes
+
+Instant lookup.
+
+General Algorithm
+Create empty set/map
+
+Loop through every element
+
+If element already exists
+
+        answer found
+
+Else
+
+        store it
+
+This is the most common pattern.
+
+Example 1
+
+Input
+
+[1,2,3,1]
+
+Initially
+
+seen = {}
+
+Read 1
+
+Not present
+
+Store
+
+seen = {1}
+
+Read 2
+
+Store
+
+seen = {1,2}
+
+Read 3
+
+Store
+
+seen = {1,2,3}
+
+Read 1
+
+Already exists
+
+Duplicate found
+
+Done.
+
+Example 2 (Two Sum)
+
+Suppose
+
+nums = [2,7,11,15]
+
+target = 9
+
+Current number
+
+2
+
+Ask
+
+What number do I need?
+
+9 - 2 = 7
+
+Have we seen 7?
+
+No
+
+Store
+
+2
+
+Next
+
+7
+
+Need
+
+9 - 7 = 2
+
+Have we seen 2?
+
+Yes
+
+Answer found.
+
+Notice:
+
+We never compare every pair.
+
+Why is this fast?
+
+Without hashing
+
+Search every element
+
+O(n)
+
+With hashing
+
+Lookup
+
+O(1)
+
+So many problems improve from
+
+O(n²)
+
+to
+
+O(n)
+Common Variations
+1. Duplicate Detection
+Contains Duplicate
+
+Store values.
+
+2. Complement Search
+Two Sum
+
+Store previous values.
+
+3. Previous Occurrence
+Contains Duplicate II
+
+Store index.
+
+4. Mapping
+Isomorphic Strings
+
+Word Pattern
+
+Store relationships.
+
+5. Presence Checking
+Longest Consecutive Sequence
+
+Use a HashSet.
+
+How to recognize Pattern 2 in an interview
+
+If you read a problem and immediately think:
+
+"I need to know whether something already exists."
+"I need to find a matching value."
+"I need to remember previous elements."
+"Searching repeatedly is too slow."
+
+then Pattern 2 (Lookup/Complement using HashSet or HashMap) is likely the right approach.
+
+Pattern 1 vs Pattern 2
+Pattern	Main Question	Data Structure	Example Problems
+Pattern 1: Frequency Counting	How many times does this appear?	HashMap	Valid Anagram, Top K Frequent Elements, Group Anagrams
+Pattern 2: Lookup / Complement	Have I seen this before? Does the required value exist?	HashSet / HashMap	Contains Duplicate, Two Sum, Contains Duplicate I
