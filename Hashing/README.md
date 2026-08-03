@@ -592,4 +592,7 @@ then Pattern 2 (Lookup/Complement using HashSet or HashMap) is likely the right 
 Pattern 1 vs Pattern 2
 Pattern	Main Question	Data Structure	Example Problems
 Pattern 1: Frequency Counting	How many times does this appear?	HashMap	Valid Anagram, Top K Frequent Elements, Group Anagrams
-Pattern 2: Lookup / Complement	Have I seen this before? Does the required value exist?	HashSet / HashMap	Contains Duplicate, Two Sum, Contains Duplicate I
+Pattern 2: Lookup / Complement	Have I seen this before? Does the required value exist?	HashSet / HashMap	
+Contains Duplicate
+Two Sum 
+Contains Duplicate I
