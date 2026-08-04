@@ -596,3 +596,5 @@ Pattern 2: Lookup / Complement	Have I seen this before? Does the required value 
 Contains Duplicate
 Two Sum 
 Contains Duplicate I
+isomorphic
+word pattern
