@@ -195,3 +195,11 @@ Every pop() removes only the top box.
 You cannot remove the middle box first.
 
 That restriction is exactly what makes stacks useful for problems involving nested structures, history, and matching.
+Recommended order
+Valid Parentheses ⭐
+Min Stack ⭐⭐
+Evaluate Reverse Polish Notation ⭐⭐
+Daily Temperatures ⭐⭐⭐⭐ (Monotonic Stack begins here)
+Next Greater Element I ⭐⭐⭐
+Next Greater Element II ⭐⭐⭐⭐
+Largest Rectangle in Histogram ⭐⭐⭐⭐⭐
