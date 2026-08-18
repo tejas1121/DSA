@@ -739,3 +739,354 @@ where h = tree height, because of the recursion stack.
 BFS:
 
 O(n) worst case because the queue can contain many nodes.
+
+🌳 Tree Height, Depth & Recursive Thinking
+
+Now we move from "how to traverse a tree" to "how to calculate something about a tree."
+
+This is where tree recursion really starts becoming important.
+
+1. Depth vs Height
+
+This distinction is frequently tested.
+
+Consider:
+
+          10
+        /    \
+       5      15
+      / \
+     2   7
+Depth
+
+Depth = distance from the root to a node.
+
+Using edges:
+
+10 → depth 0
+
+
+5  → depth 1
+15 → depth 1
+
+
+2  → depth 2
+7  → depth 2
+
+So:
+
+Depth goes DOWN from the root.
+
+Height
+
+Height = longest distance from a node down to a leaf.
+
+For example:
+
+          10
+        /    \
+       5      15
+      / \
+     2   7
+
+Using edges:
+
+Height(2)  = 0
+Height(7)  = 0
+Height(15) = 0
+
+
+Height(5)  = 1
+
+
+Height(10) = 2
+
+So:
+
+Height goes UP from the leaf toward the root.
+
+2. The Most Important Tree Formula
+
+For a binary tree:
+
+height(root)
+=
+1 + max(
+    height(left),
+    height(right)
+)
+
+Why?
+
+Suppose:
+
+          10
+        /    \
+       5      15
+      / \
+     2   7
+
+For node 5:
+
+height(2) = 0
+height(7) = 0
+
+
+height(5)
+= 1 + max(0, 0)
+= 1
+
+Then:
+
+height(10)
+= 1 + max(height(5), height(15))
+
+
+= 1 + max(1, 0)
+
+
+= 2
+3. Base Case
+
+Here's where recursion becomes important.
+
+What is the height of an empty tree?
+
+We usually define:
+
+height(None) = 0
+
+Then the code becomes beautifully simple:
+
+def height(root):
+    if root is None:
+        return 0
+
+
+    left = height(root.left)
+    right = height(root.right)
+
+
+    return 1 + max(left, right)
+
+Notice the pattern:
+
+1. Solve left subtree
+2. Solve right subtree
+3. Combine the answers
+
+This is called postorder-style recursion.
+
+4. Why Does This Work?
+
+Let's trace:
+
+          10
+        /    \
+       5      15
+      / \
+     2   7
+
+Start:
+
+height(10)
+
+We can't immediately know the answer.
+
+So we ask:
+
+height(5)
+height(15)
+
+For 5, we ask:
+
+height(2)
+height(7)
+
+For 2:
+
+height(None) → 0
+height(None) → 0
+
+Therefore:
+
+height(2) = 1
+
+Similarly:
+
+height(7) = 1
+height(15) = 1
+
+Then:
+
+height(5)
+= 1 + max(1, 1)
+= 2
+
+Finally:
+
+height(10)
+= 1 + max(2, 1)
+= 3
+Important!
+
+This implementation defines height as number of nodes on the longest root-to-leaf path.
+
+So:
+
+10 → 5 → 2
+
+has height 3.
+
+Earlier we discussed the edge-based definition, where the same tree has height 2.
+
+Both conventions exist.
+
+For LeetCode-style problems such as Maximum Depth of Binary Tree, the standard implementation above returns the number of nodes on the path.
+
+5. Maximum Depth = Height
+
+For the common binary-tree problem:
+
+Maximum Depth of Binary Tree
+
+we use:
+
+def maxDepth(root):
+    if root is None:
+        return 0
+
+
+    return 1 + max(
+        maxDepth(root.left),
+        maxDepth(root.right)
+    )
+
+This is one of the most important basic tree patterns.
+
+6. The General Tree Recursion Pattern
+
+This is what I want you to memorize—not the individual problems.
+
+Whenever you get a tree problem asking you to calculate something for every subtree, think:
+
+def solve(root):
+
+
+    if root is None:
+        return BASE_CASE
+
+
+    left = solve(root.left)
+    right = solve(root.right)
+
+
+    return COMBINE(left, right, root)
+
+For height:
+
+return 1 + max(left, right)
+
+For other problems, the combine step changes.
+
+7. Example: Count Nodes
+
+Question:
+
+How many nodes are present in the tree?
+
+Think:
+
+Count current node
++
+count left subtree
++
+count right subtree
+
+Therefore:
+
+def countNodes(root):
+    if root is None:
+        return 0
+
+
+    return 1 + countNodes(root.left) + countNodes(root.right)
+
+The 1 represents the current node.
+
+8. Example: Sum of All Nodes
+
+Suppose:
+
+        10
+       /  \
+      5    15
+
+Sum:
+
+10 + 5 + 15 = 30
+
+Recursive pattern:
+
+def sumTree(root):
+    if root is None:
+        return 0
+
+
+    return (
+        root.val
+        + sumTree(root.left)
+        + sumTree(root.right)
+    )
+
+Again:
+
+left answer
++
+right answer
++
+current node
+🧠 The Big Pattern
+
+Look at these three problems:
+
+Height
+1 + max(left, right)
+Number of nodes
+1 + left + right
+Sum
+root.val + left + right
+
+The recursive structure stays almost identical.
+
+Only the combination logic changes.
+
+That's the real skill we're building.
+
+9. Complexity
+
+For height:
+
+height(root)
+
+Every node is visited once.
+
+Time
+
+O(n)
+
+Space
+
+Because of recursion:
+
+O(h)
+
+where h is the tree height.
+
+For a balanced tree:
+
+O(log n)
+
+For a completely skewed tree:
+
+O(n)
