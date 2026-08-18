@@ -371,3 +371,371 @@ Tree 3
 Every node can be treated as the root of its own smaller tree.
 
 That idea is the foundation of recursive tree problems.
+
+
+🌳 Tree Traversals
+
+Now we move to one of the most important tree concepts for placements.
+
+Given this tree:
+
+            1
+          /   \
+         2     3
+        / \   / \
+       4   5 6   7
+
+We want to visit every node in a particular order.
+
+There are two major approaches:
+
+DFS — Depth First Search
+
+Go deep before moving sideways.
+
+Preorder
+Inorder
+Postorder
+BFS — Breadth First Search
+
+Visit level by level.
+
+Level Order Traversal
+1. Preorder Traversal
+
+The rule is:
+
+Root → Left → Right
+
+Remember:
+
+P = Parent first
+
+For:
+
+            1
+          /   \
+         2     3
+        / \   / \
+       4   5 6   7
+
+We start at 1.
+
+1 → 2 → 4 → 5 → 3 → 6 → 7
+
+So:
+
+Preorder = [1, 2, 4, 5, 3, 6, 7]
+
+Mental process
+1
+↓
+visit 1
+
+
+then left subtree
+2
+↓
+visit 2
+
+
+then left subtree
+4
+↓
+visit 4
+
+
+then 5
+
+
+then go back to 3
+2. Inorder Traversal
+
+Rule:
+
+Left → Root → Right
+
+This one is particularly important because:
+
+Inorder traversal of a BST produces sorted order.
+
+For our tree:
+
+            1
+          /   \
+         2     3
+        / \   / \
+       4   5 6   7
+
+Result:
+
+4 → 2 → 5 → 1 → 6 → 3 → 7
+
+So:
+
+Inorder = [4, 2, 5, 1, 6, 3, 7]
+
+3. Postorder Traversal
+
+Rule:
+
+Left → Right → Root
+
+Root comes last.
+
+For our tree:
+
+            1
+          /   \
+         2     3
+        / \   / \
+       4   5 6   7
+
+Result:
+
+4 → 5 → 2 → 6 → 7 → 3 → 1
+
+So:
+
+Postorder = [4, 5, 2, 6, 7, 3, 1]
+
+🧠 Remember All Three
+
+This is extremely important.
+
+Traversal	Order
+Preorder	Root → Left → Right
+Inorder	Left → Root → Right
+Postorder	Left → Right → Root
+
+The easiest way to remember:
+
+PRE   = Root comes PREviously
+IN    = Root comes IN between
+POST  = Root comes POST / last
+
+Or simply:
+
+PREORDER
+R L R
+
+
+INORDER
+L R R
+
+
+POSTORDER
+L R R
+
+But the letters become confusing, so use the full rules:
+
+Pre = Root first
+In = Root middle
+Post = Root last
+
+4. Python Recursive Implementation
+Preorder
+def preorder(root):
+    if root is None:
+        return
+
+
+    print(root.val)
+    preorder(root.left)
+    preorder(root.right)
+
+The sequence is:
+
+print root
+↓
+left
+↓
+right
+Inorder
+def inorder(root):
+    if root is None:
+        return
+
+
+    inorder(root.left)
+    print(root.val)
+    inorder(root.right)
+
+Sequence:
+
+left
+↓
+print root
+↓
+right
+Postorder
+def postorder(root):
+    if root is None:
+        return
+
+
+    postorder(root.left)
+    postorder(root.right)
+    print(root.val)
+
+Sequence:
+
+left
+↓
+right
+↓
+print root
+5. Why if root is None?
+
+This is the base case of the recursion.
+
+Suppose we reach:
+
+4
+
+and call:
+
+preorder(4.left)
+
+But 4.left is None.
+
+So:
+
+if root is None:
+    return
+
+stops the recursion.
+
+This is why tree traversal is fundamentally a recursion problem.
+
+6. BFS — Level Order Traversal
+
+Now we switch from DFS to BFS.
+
+Instead of going deep:
+
+1
+↓
+2
+↓
+4
+
+we go level by level:
+
+1
+2 3
+4 5 6 7
+
+Result:
+
+[1, 2, 3, 4, 5, 6, 7]
+
+BFS uses a:
+
+Queue
+
+And you already completed Queue, so this should feel familiar.
+
+Level Order Using Queue
+from collections import deque
+
+
+def levelOrder(root):
+    if root is None:
+        return []
+
+
+    queue = deque([root])
+    result = []
+
+
+    while queue:
+        node = queue.popleft()
+        result.append(node.val)
+
+
+        if node.left:
+            queue.append(node.left)
+
+
+        if node.right:
+            queue.append(node.right)
+
+
+    return result
+
+The queue evolves like this:
+
+Start:
+[1]
+
+
+Remove 1:
+[]
+
+
+Add 2, 3:
+[2, 3]
+
+
+Remove 2:
+[3]
+
+
+Add 4, 5:
+[3, 4, 5]
+
+
+Remove 3:
+[4, 5]
+
+
+Add 6, 7:
+[4, 5, 6, 7]
+
+Eventually:
+
+[1, 2, 3, 4, 5, 6, 7]
+⭐ Placement Pattern Recognition
+
+This is what I want you to start recognizing immediately:
+
+If the question says:
+
+"Visit root, then left, then right"
+
+→ Preorder
+
+"Return nodes in sorted order" + BST
+
+→ Inorder
+
+"Children before parent"
+
+→ Postorder
+
+"Level by level"
+
+→ BFS / Level Order / Queue
+
+⚡ Complexity
+
+For all standard traversals:
+
+Time
+
+O(n)
+
+because every node is visited once.
+
+Space
+
+Recursive DFS:
+
+O(h)
+
+where h = tree height, because of the recursion stack.
+
+BFS:
+
+O(n) worst case because the queue can contain many nodes.
